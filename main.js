@@ -129,6 +129,7 @@ document.getElementById('shuffleBtn').addEventListener('click', () => {
     initBoard();
 });
 
+
 // Initialize the board
 initBoard();
 
