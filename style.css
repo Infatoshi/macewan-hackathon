@@ -1,0 +1,88 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; /* Center children horizontally */
+    align-items: center; /* Center children vertically */
+}
+
+#sudoku-board {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-gap: 0px;
+    width: 450px;
+}
+
+.cell {
+    width: 50px;
+    height: 50px;
+    border: 0.5px solid #000000;
+    font-size: 40px;
+}
+
+/* Thicker right borders for every third cell */
+.cell:nth-child(3n) {
+    border-right-width: 2px;
+}
+
+/* Thicker bottom borders for the cells of every third row */
+.cell:nth-child(27n),
+.cell:nth-child(27n-1),
+.cell:nth-child(27n-2),
+.cell:nth-child(27n-3),
+.cell:nth-child(27n-4),
+.cell:nth-child(27n-5),
+.cell:nth-child(27n-6),
+.cell:nth-child(27n-7),
+.cell:nth-child(27n-8) {
+    border-bottom-width: 2px;
+}
+
+#options {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    width: 300px;
+    margin: 20px auto;
+    padding-left: 15px;
+}
+
+.option {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+    background-color: #eee;
+    border: 1px solid #aaa;
+    cursor: pointer;
+}
+
+.option:hover {
+    background-color: #ccc;
+}
+
+@keyframes correctFlash {
+    0% { background-color: #00FF00; }   /* Green */
+    100% { background-color: transparent; }
+}
+
+@keyframes incorrectFlash {
+    0% { background-color: #FF0000; }   /* Red */
+    100% { background-color: transparent; }
+}
+
+.correct {
+    animation: correctFlash 1s forwards;
+}
+
+.incorrect {
+    animation: incorrectFlash 1s forwards;
+}
