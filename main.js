@@ -36,11 +36,11 @@ function getCompletelySolvedBoard(partialBoard) {
 
 
 function checkCorrectness(row, col) {
-    const sudokuBoard = document.getElementById('sudoku-board');
-    const cellIndex = row * boardSize + col;
-    const cell = sudokuBoard.childNodes[cellIndex];
-
-    if (cell.textContent === unicodeSolved[row][col]) {
+    // const sudokuBoard = document.getElementById('sudoku-board');
+    // const cellIndex = row * boardSize + col;
+    // const cell = sudokuBoard.childNodes[cellIndex];
+    console.log(emojiMapping[selectedOption])
+    if (emojiMapping[selectedOption] === unicodeSolved[row][col]) {
         return true;
     } else {
         return false;
@@ -48,8 +48,8 @@ function checkCorrectness(row, col) {
 }
 
 
-
-
+let unicodePartiallySolved = partiallySolved.map(row => row.map(num => emojiMapping[num]));
+let unicodeSolved;
 // Initialize the board
 function initBoard() {
     const sudokuBoard = document.getElementById('sudoku-board');
@@ -57,10 +57,10 @@ function initBoard() {
     // console.log('partially_solved:', partiallySolved);
 
     completelySolved = getCompletelySolvedBoard(partiallySolved);
-    let unicodePartiallySolved = partiallySolved.map(row => row.map(num => emojiMapping[num]));
+    unicodePartiallySolved = partiallySolved.map(row => row.map(num => emojiMapping[num]));
     console.log('partially_solved:', unicodePartiallySolved);
     
-    let unicodeSolved = completelySolved.map(row => row.map(num => emojiMapping[num]));
+    unicodeSolved = completelySolved.map(row => row.map(num => emojiMapping[num]));
     console.log('completely_solved:', unicodeSolved);
 
 
