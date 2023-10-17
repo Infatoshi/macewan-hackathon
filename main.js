@@ -11,7 +11,7 @@ const emojiMapping = {
     8: "🌙",
     9: "🍬"
 };
-
+let mistakes_counter = 0;
 const boardSize = 9;
 let selectedOption = null;
 
@@ -52,6 +52,7 @@ let unicodePartiallySolved = partiallySolved.map(row => row.map(num => emojiMapp
 let unicodeSolved;
 // Initialize the board
 function initBoard() {
+    document.getElementById('Mistakes2').textContent = mistakes_counter;
     const sudokuBoard = document.getElementById('sudoku-board');
     partiallySolved = getPartiallySolvedBoard();
     // console.log('partially_solved:', partiallySolved);
@@ -93,6 +94,17 @@ function placeEmoji(row, col) {
         cell.textContent = emojiMapping[selectedOption];
         console.log('partially_solved:', partiallySolved);
     } else {
+        document.getElementById('Mistakes2').textContent = ++mistakes_counter;
+        if (mistakes_counter == 3) {
+        mistakes_counter = 0;
+        document.getElementById('Mistakes2').textContent = mistakes_counter;
+        // setInterval(function(){ alert("You lost!"); }, 3000);
+        // alert('You lost!');
+        
+        clearBoard();
+        initBoard();
+        }
+
         console.log('incorrect')
         cell.classList.add('incorrect');
         cell.textContent = ''
