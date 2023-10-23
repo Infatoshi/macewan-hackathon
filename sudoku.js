@@ -1,6 +1,8 @@
 export default class Sudoku {
-    constructor() {
+    constructor(difficulty) {
         this.board = [];
+        this.difficulty = difficulty;
+        
     }
 
     is_valid(row, col, num) {
@@ -89,19 +91,21 @@ export default class Sudoku {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-    generate_sudoku_optimized(difficulty = "hard") {
+    generate_sudoku_optimized(difficulty) {
         this.board = Array(9).fill().map(() => Array(9).fill(0));
         this.fill_board();
 
         let num_remove = 0;
         if (difficulty === "obvious") {
             num_remove = this.random_int(0, 5);
-        } else if (difficulty === "easy") {
+        } else if (difficulty == "easy") {
             num_remove = this.random_int(20, 30);
-        } else if (difficulty === "hard") {
+        } else if (difficulty == "hard") {
             num_remove = this.random_int(40, 50);
-        } else { // medium
+        } else if (difficulty == "medium"){ // medium
             num_remove = this.random_int(30, 40);
+        } else {
+            console.log('invalid difficulty');
         }
 
         while (num_remove > 0) {
@@ -119,14 +123,11 @@ export default class Sudoku {
         }
     }
     
-const sudoku = new Sudoku();
-
-const partially_solved = sudoku.generate_sudoku_optimized();
+let difficulty = 'easy';
+// console.log(difficulty)
+const sudoku = new Sudoku(difficulty);
+// console.log(sudoku.check_difficulty(difficulty));
+const partially_solved = sudoku.generate_sudoku_optimized(difficulty);
 const completely_solved = JSON.parse(JSON.stringify(partially_solved));
 sudoku.board = completely_solved;
 sudoku.solve_sudoku();
-
-
-    
-
-

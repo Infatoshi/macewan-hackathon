@@ -1,5 +1,4 @@
-
-class Ellipse {
+class Fog {
     constructor(x, y, radiusX, radiusY, speed, color) {
         this.x = x;
         this.y = y;
@@ -17,10 +16,12 @@ class Ellipse {
     }
 
     update(canvas) {
-        this.x += this.speed; // Moves the ellipse horizontally
-        // If the ellipse moves off screen, reset its position to the left
-        if (this.x - this.radiusX > canvas.width) {
-            this.x = -this.radiusX;
+        this.y -= this.speed; // Moves the fog horizontally
+
+        // If the fog moves off screen, reset its position to the top and a random x position
+        if (this.y + this.radiusY < 0) {
+            this.y = canvas.height + this.radiusY;
+            this.x = Math.random() * canvas.width;  // Set x to a random position within the canvas width
         }
     }
 }
@@ -30,39 +31,49 @@ document.addEventListener("DOMContentLoaded", function () {
     var canvas = document.getElementById('backgroundCanvas');
     var ctx = canvas.getContext('2d');
 
-    // Create instances of ellipses
-    let ellipses = [
-        new Ellipse(50, 150, 50, 25, 1, 'red'), // x, y, radiusX, radiusY, speed, color
-        new Ellipse(150, 75, 60, 30, 2, 'blue'),
-        // Add as many as you like
-    ];
+    // Load the background image
+    var backgroundImage = new Image();
+    backgroundImage.src = 'assets/background2.png'; // Put the URL or relative path of your image here
 
-    function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
+    // Ensure the image is loaded before starting the animation
+    backgroundImage.onload = function() {
+        // Create instances of Fog
+        let fogs = [];
+        for (let i = 0; i < 100; i++) {
+            let rand = Math.random() * 20;
+            
+            fogs.push(new Fog(Math.random() * 1400, Math.random() * 800, rand, rand, Math.random() * 0.2 + 0.3, 'rgba(255, 255, 255, 0.5)')) // Simulating fog with semi-transparent ellipses
+        }
 
-    function drawStuff() {
-        // Clear the canvas
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-        // Update and redraw each ellipse
-        ellipses.forEach(function(ellipse) {
-            ellipse.update(canvas); // pass the canvas here
-            ellipse.draw(ctx);
-        });
-    
-        // Request the next frame
-        requestAnimationFrame(drawStuff);
-    }
-    
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
 
-    // Initial setup
-    window.addEventListener('resize', resizeCanvas, false);
-    resizeCanvas();
+        function drawStuff() {
+            // Clear the canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Start the animation
-    drawStuff();
+            // Draw the background image
+            ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
+        
+            // Update and redraw each fog
+            fogs.forEach(function(fog) {
+                fog.update(canvas);
+                fog.draw(ctx);
+            });
+        
+            // Request the next frame
+            requestAnimationFrame(drawStuff);
+        }
+        
+        // Initial setup
+        window.addEventListener('resize', resizeCanvas, false);
+        resizeCanvas();
 
-    
+        // Start the animation
+        drawStuff();
+    };
 });
+
+

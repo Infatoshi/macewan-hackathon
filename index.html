@@ -7,33 +7,43 @@
 </head>
 <link rel="stylesheet" href="style.css">
 <body>
+    <div id="gameContainer">
+        <div id="counters">
+            <p id="Mistakes1" style="display: inline;">Mistakes:</p>
+            <p id="Mistakes2" style="display: inline;"></p>
+            <p id="Mistakes3" style="display: inline;">/ 3</p>
+        </div>
+        
+        <div id="sudoku-board"></div>
+        
+        <div id="options">
+            <div class="option" id="pumpkin">🎃</div>
+            <div class="option" id="ghost">👻</div>
+            <div class="option" id="witch">🧹</div>
+            <div class="option" id="vampire">🧛‍♂️</div>
+            <div class="option" id="zombie">🧟‍♂️</div>
+            <div class="option" id="bat">🦇</div>
+            <div class="option" id="web">🪦</div>
+            <div class="option" id="moon">🌙</div>
+            <div class="option" id="candy">🍬</div>
+        </div>
+        
+        <div id="shuffle">
+            <button id="shuffleBtn">New Game</button>
+        </div>
+        <br>
+        <div id="difficulties">
+            <button id="easyBtn">Easy</button>
+            <button id="mediumBtn">Medium</button>
+            <button id="hardBtn">Hard</button>
+        </div>
+    </div>
     <canvas id="backgroundCanvas"></canvas>
-    <script src="/background.js"></script>
+    <script src="background.js"></script>
 
-    <div id="counters">
-        <p id="Mistakes1" style="display: inline;">Mistakes:</p>
-        <p id="Mistakes2" style="display: inline;"></p>
-        <p id="Mistakes3" style="display: inline;">/ 3</p>
-    </div>
-    
-    <div id="sudoku-board"></div>
-    
-    <div id="options">
-        <div class="option" id="pumpkin">🎃</div>
-        <div class="option" id="ghost">👻</div>
-        <div class="option" id="witch">🧙‍♀️</div>
-        <div class="option" id="vampire">🧛‍♂️</div>
-        <div class="option" id="zombie">🧟‍♂️</div>
-        <div class="option" id="bat">🦇</div>
-        <div class="option" id="web">🕸️</div>
-        <div class="option" id="moon">🌙</div>
-        <div class="option" id="candy">🍬</div>
-    </div>
-    
-    <div id="shuffle">
-        <button id="shuffleBtn">New Game</button>
-    </div>
+    <!-- <img src="background1.jpg"> -->
 
 <script type="module" src="main.js"></script>
+
 </body>
 </html>

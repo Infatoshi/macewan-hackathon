@@ -3,26 +3,27 @@ import Sudoku from './sudoku.js';
 const emojiMapping = {
     1: "🎃",
     2: "👻",
-    3: "🧙‍♀️",
+    3: "🧹",
     4: "🧛‍♂️",
     5: "🧟‍♂️",
     6: "🦇",
-    7: "🕸️",
+    7: "🪦",
     8: "🌙",
     9: "🍬"
 };
 let mistakes_counter = 0;
+let difficulty = 'easy';
 const boardSize = 9;
 let selectedOption = null;
 
 // Instantiate the sudoku object before using it
-const sudoku = new Sudoku();
+let sudoku = new Sudoku(difficulty);
 
 let partiallySolved = getPartiallySolvedBoard();
 let completelySolved = getCompletelySolvedBoard(partiallySolved);
 
-function getPartiallySolvedBoard() {
-    return sudoku.generate_sudoku_optimized();
+function getPartiallySolvedBoard(difficulty) {
+    return sudoku.generate_sudoku_optimized(difficulty);
 }
 
 function getCompletelySolvedBoard(partialBoard) {
@@ -35,11 +36,12 @@ function getCompletelySolvedBoard(partialBoard) {
 
 
 
+
 function checkCorrectness(row, col) {
     // const sudokuBoard = document.getElementById('sudoku-board');
     // const cellIndex = row * boardSize + col;
     // const cell = sudokuBoard.childNodes[cellIndex];
-    console.log(emojiMapping[selectedOption])
+    // console.log(emojiMapping[selectedOption])
     if (emojiMapping[selectedOption] === unicodeSolved[row][col]) {
         return true;
     } else {
@@ -51,18 +53,18 @@ function checkCorrectness(row, col) {
 let unicodePartiallySolved = partiallySolved.map(row => row.map(num => emojiMapping[num]));
 let unicodeSolved;
 // Initialize the board
-function initBoard() {
+function initBoard(difficulty) {
     document.getElementById('Mistakes2').textContent = mistakes_counter;
     const sudokuBoard = document.getElementById('sudoku-board');
-    partiallySolved = getPartiallySolvedBoard();
+    partiallySolved = getPartiallySolvedBoard(difficulty);
     // console.log('partially_solved:', partiallySolved);
 
     completelySolved = getCompletelySolvedBoard(partiallySolved);
     unicodePartiallySolved = partiallySolved.map(row => row.map(num => emojiMapping[num]));
-    console.log('partially_solved:', unicodePartiallySolved);
+    // console.log('partially_solved:', unicodePartiallySolved);
     
     unicodeSolved = completelySolved.map(row => row.map(num => emojiMapping[num]));
-    console.log('completely_solved:', unicodeSolved);
+    // console.log('completely_solved:', unicodeSolved);
 
 
 
@@ -87,12 +89,12 @@ function placeEmoji(row, col) {
     const cell = sudokuBoard.childNodes[cellIndex];
 
     if (checkCorrectness(row, col) == true) {
-        console.log('correct')
+        // console.log('correct')
         cell.classList.add('correct');
         setTimeout(() => cell.classList.remove('correct'), 1000);  // Remove the class after animation duration (1s)
         partiallySolved[row][col] = parseInt(selectedOption, 10);
         cell.textContent = emojiMapping[selectedOption];
-        console.log('partially_solved:', partiallySolved);
+        // console.log('partially_solved:', partiallySolved);
     } else {
         document.getElementById('Mistakes2').textContent = ++mistakes_counter;
         if (mistakes_counter == 3) {
@@ -102,10 +104,10 @@ function placeEmoji(row, col) {
         // alert('You lost!');
         
         clearBoard();
-        initBoard();
+        initBoard(difficulty);
         }
 
-        console.log('incorrect')
+        // console.log('incorrect')
         cell.classList.add('incorrect');
         cell.textContent = ''
         setTimeout(() => cell.classList.remove('incorrect'), 1000);  // Remove the class after animation duration (1s)  
@@ -122,7 +124,7 @@ document.querySelectorAll('.option').forEach(option => {
         this.classList.add('selected');
         if (partiallySolved === completelySolved) {
             alert('You won!');
-            initBoard();
+            initBoard(difficulty);
         }
 
     });
@@ -138,10 +140,42 @@ function clearBoard() {
 
 document.getElementById('shuffleBtn').addEventListener('click', () => { 
     clearBoard();
-    initBoard();
+    initBoard(difficulty);
 });
 
-
+document.getElementById('easyBtn').addEventListener('click', () => {
+    if (mode == 'medium' || mode == 'hard') {
+        clearBoard();
+        difficulty = 'easy';
+        initBoard(difficulty);
+        
+    } else {
+        alert('Error: Incorrect Mode!')
+        // console.log('Error: Incorrect Mode!')
+    }
+});
+document.getElementById('mediumBtn').addEventListener('click', () => {
+    if (mode == 'easy' || mode == 'hard') {
+        clearBoard();
+        difficulty = 'medium';
+        initBoard(difficulty);
+        
+    } else {
+        alert('Error: Incorrect Mode!')
+        // console.log('Error: Incorrect Mode!')
+    }
+});
+document.getElementById('hardBtn').addEventListener('click', () => {
+    if (mode == 'medium' || mode == 'easy') {
+        clearBoard();
+        difficulty = 'hard';
+        initBoard(difficulty);
+        
+    } else {
+        alert('Error: Incorrect Mode!')
+        // console.log('Error: Incorrect Mode!')
+    }
+});
 // Initialize the board
-initBoard();
+initBoard(difficulty);
 
