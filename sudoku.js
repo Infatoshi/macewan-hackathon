@@ -94,7 +94,7 @@ export default class Sudoku {
     generate_sudoku_optimized(difficulty) {
         this.board = Array(9).fill().map(() => Array(9).fill(0));
         this.fill_board();
-
+        // console.log('difficulty is', difficulty);
         let num_remove = 0;
         if (difficulty === "obvious") {
             num_remove = this.random_int(0, 5);
@@ -122,12 +122,12 @@ export default class Sudoku {
         return JSON.parse(JSON.stringify(this.board));
         }
     }
-    
+
 let difficulty = 'easy';
 // console.log(difficulty)
 const sudoku = new Sudoku(difficulty);
 // console.log(sudoku.check_difficulty(difficulty));
-const partially_solved = sudoku.generate_sudoku_optimized(difficulty);
-const completely_solved = JSON.parse(JSON.stringify(partially_solved));
+let partially_solved = sudoku.generate_sudoku_optimized(difficulty);
+let completely_solved = JSON.parse(JSON.stringify(partially_solved));
 sudoku.board = completely_solved;
 sudoku.solve_sudoku();

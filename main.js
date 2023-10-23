@@ -56,6 +56,7 @@ let unicodeSolved;
 function initBoard(difficulty) {
     document.getElementById('Mistakes2').textContent = mistakes_counter;
     const sudokuBoard = document.getElementById('sudoku-board');
+    console.log('difficulty is', difficulty);
     partiallySolved = getPartiallySolvedBoard(difficulty);
     // console.log('partially_solved:', partiallySolved);
 
@@ -144,36 +145,39 @@ document.getElementById('shuffleBtn').addEventListener('click', () => {
 });
 
 document.getElementById('easyBtn').addEventListener('click', () => {
-    if (mode == 'medium' || mode == 'hard') {
+    if (difficulty == 'medium' || difficulty == 'hard') {
         clearBoard();
         difficulty = 'easy';
         initBoard(difficulty);
         
     } else {
-        alert('Error: Incorrect Mode!')
-        // console.log('Error: Incorrect Mode!')
+        clearBoard();
+        initBoard(difficulty);
+        // console.log('Error: Incorrect difficulty!')
     }
 });
 document.getElementById('mediumBtn').addEventListener('click', () => {
-    if (mode == 'easy' || mode == 'hard') {
+    if (difficulty == 'easy' || difficulty == 'hard') {
         clearBoard();
         difficulty = 'medium';
         initBoard(difficulty);
         
     } else {
-        alert('Error: Incorrect Mode!')
-        // console.log('Error: Incorrect Mode!')
+        clearBoard();
+        initBoard(difficulty);
+        // console.log('Error: Incorrect difficulty!')
     }
 });
 document.getElementById('hardBtn').addEventListener('click', () => {
-    if (mode == 'medium' || mode == 'easy') {
+    if (difficulty == 'medium' || difficulty == 'easy') {
         clearBoard();
         difficulty = 'hard';
         initBoard(difficulty);
         
     } else {
-        alert('Error: Incorrect Mode!')
-        // console.log('Error: Incorrect Mode!')
+        clearBoard();
+        initBoard(difficulty);
+        // console.log('Error: Incorrect difficulty!')
     }
 });
 // Initialize the board
