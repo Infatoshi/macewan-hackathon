@@ -120,3 +120,12 @@ body {
     border: 1px solid white;
     background-color: transparent;
 }
+.easyBtn:active {
+    background-color: #00FF00;
+}
+.mediumBtn:active {
+    background-color: #00FF00;
+}
+.hardBtn:active {
+    background-color: #00FF00;
+}

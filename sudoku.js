@@ -124,9 +124,7 @@ export default class Sudoku {
     }
 
 let difficulty = 'easy';
-// console.log(difficulty)
 const sudoku = new Sudoku(difficulty);
-// console.log(sudoku.check_difficulty(difficulty));
 let partially_solved = sudoku.generate_sudoku_optimized(difficulty);
 let completely_solved = JSON.parse(JSON.stringify(partially_solved));
 sudoku.board = completely_solved;
