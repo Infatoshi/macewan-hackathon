@@ -94,7 +94,7 @@ export default class Sudoku {
     generate_sudoku_optimized(difficulty) {
         this.board = Array(9).fill().map(() => Array(9).fill(0));
         this.fill_board();
-        // console.log('difficulty is', difficulty);
+        
         let num_remove = 0;
         if (difficulty === "obvious") {
             num_remove = this.random_int(0, 5);

@@ -38,10 +38,6 @@ function getCompletelySolvedBoard(partialBoard) {
 
 
 function checkCorrectness(row, col) {
-    // const sudokuBoard = document.getElementById('sudoku-board');
-    // const cellIndex = row * boardSize + col;
-    // const cell = sudokuBoard.childNodes[cellIndex];
-    // console.log(emojiMapping[selectedOption])
     if (emojiMapping[selectedOption] === unicodeSolved[row][col]) {
         return true;
     } else {
@@ -58,17 +54,27 @@ function initBoard(difficulty) {
     const sudokuBoard = document.getElementById('sudoku-board');
     console.log('difficulty is', difficulty);
     partiallySolved = getPartiallySolvedBoard(difficulty);
-    // console.log('partially_solved:', partiallySolved);
+
 
     completelySolved = getCompletelySolvedBoard(partiallySolved);
     unicodePartiallySolved = partiallySolved.map(row => row.map(num => emojiMapping[num]));
-    // console.log('partially_solved:', unicodePartiallySolved);
+
     
     unicodeSolved = completelySolved.map(row => row.map(num => emojiMapping[num]));
-    // console.log('completely_solved:', unicodeSolved);
 
-
-
+    if (difficulty == 'easy') {
+        document.getElementById('easyBtn').style.backgroundColor = 'green';
+        document.getElementById('mediumBtn').style.backgroundColor = 'black';
+        document.getElementById('hardBtn').style.backgroundColor = 'black';
+    } else if (difficulty == 'medium') {
+        document.getElementById('easyBtn').style.backgroundColor = 'black';
+        document.getElementById('mediumBtn').style.backgroundColor = 'yellow';
+        document.getElementById('hardBtn').style.backgroundColor = 'black';
+    } else if (difficulty == 'hard') {
+        document.getElementById('easyBtn').style.backgroundColor = 'black';
+        document.getElementById('mediumBtn').style.backgroundColor = 'black';
+        document.getElementById('hardBtn').style.backgroundColor = 'red';
+    }
     let cellIndex = 0;  // Assuming boardSize is 9
     for (let i = 0; i < boardSize; i++) {
         for (let j = 0; j < boardSize; j++) {
@@ -95,20 +101,16 @@ function placeEmoji(row, col) {
         setTimeout(() => cell.classList.remove('correct'), 1000);  // Remove the class after animation duration (1s)
         partiallySolved[row][col] = parseInt(selectedOption, 10);
         cell.textContent = emojiMapping[selectedOption];
-        // console.log('partially_solved:', partiallySolved);
     } else {
         document.getElementById('Mistakes2').textContent = ++mistakes_counter;
         if (mistakes_counter == 3) {
         mistakes_counter = 0;
         document.getElementById('Mistakes2').textContent = mistakes_counter;
-        // setInterval(function(){ alert("You lost!"); }, 3000);
-        // alert('You lost!');
+
         
         clearBoard();
         initBoard(difficulty);
         }
-
-        // console.log('incorrect')
         cell.classList.add('incorrect');
         cell.textContent = ''
         setTimeout(() => cell.classList.remove('incorrect'), 1000);  // Remove the class after animation duration (1s)  
@@ -149,11 +151,9 @@ document.getElementById('easyBtn').addEventListener('click', () => {
         clearBoard();
         difficulty = 'easy';
         initBoard(difficulty);
-        
     } else {
         clearBoard();
         initBoard(difficulty);
-        // console.log('Error: Incorrect difficulty!')
     }
 });
 document.getElementById('mediumBtn').addEventListener('click', () => {
@@ -161,11 +161,9 @@ document.getElementById('mediumBtn').addEventListener('click', () => {
         clearBoard();
         difficulty = 'medium';
         initBoard(difficulty);
-        
     } else {
         clearBoard();
         initBoard(difficulty);
-        // console.log('Error: Incorrect difficulty!')
     }
 });
 document.getElementById('hardBtn').addEventListener('click', () => {
@@ -173,11 +171,9 @@ document.getElementById('hardBtn').addEventListener('click', () => {
         clearBoard();
         difficulty = 'hard';
         initBoard(difficulty);
-        
     } else {
         clearBoard();
         initBoard(difficulty);
-        // console.log('Error: Incorrect difficulty!')
     }
 });
 // Initialize the board
