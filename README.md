@@ -9,7 +9,7 @@ We use 9 unicode characters instead of the numbers 1-9.
 ## Firstly, install nodejs (run `node -v` to check):
 Windows: https://nodejs.org/en/download
 
-MacOS: Install homebrew (/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)")
+MacOS: Install homebrew `(/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)")`
 
 then run `brew install node`
 
