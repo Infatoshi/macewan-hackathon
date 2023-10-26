@@ -7,11 +7,11 @@ The premise of the hackathon project is to implement a simple sudoku game in Jav
 We use 9 unicode characters instead of the numbers 1-9. 
 
 ## Firstly, install nodejs (run `node -v` to check):
-Windows: https://nodejs.org/en/download
-MacOS: Install homebrew (/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)") 
-then run `brew install node`
-Linux: `sudo apt update && sudo apt upgrade` then `sudo apt install nodejs && sudo apt install npm`
-Archlinux: `sudo pacman -Syu` then `sudo pacman -S nodejs && npm`
+Windows: https://nodejs.org/en/download\n
+MacOS: Install homebrew (/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)") \n
+then run `brew install node`\n
+Linux: `sudo apt update && sudo apt upgrade` then `sudo apt install nodejs && sudo apt install npm`\n
+Archlinux: `sudo pacman -Syu` then `sudo pacman -S nodejs && npm`\n
 
 ## Instructions (ensure you have nodejs installed):
 1. `git clone https://github.com/Infatoshi/macewan-hackathon`
