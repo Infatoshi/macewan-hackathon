@@ -17,7 +17,7 @@ Linux: `sudo apt update && sudo apt upgrade` then `sudo apt install nodejs && su
 
 Archlinux: `sudo pacman -Syu` then `sudo pacman -S nodejs && npm`
 
-## Instructions (ensure you have nodejs installed):
+## Instructions (ensure you have git and nodejs installed):
 1. `git clone https://github.com/Infatoshi/macewan-hackathon`
 2. `cd macewan-hackathon`
 3. `npm install -g http-server`
