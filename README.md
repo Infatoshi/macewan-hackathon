@@ -23,3 +23,5 @@ Archlinux: `sudo pacman -Syu` then `sudo pacman -S nodejs && npm`
 3. `npm install -g http-server`
 4. `http-server`
 5. Play Sudoku!
+
+Created by: Elliot Arledge, Andrin Arledge, Rio Tanaka

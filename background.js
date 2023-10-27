@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Load the background image
     var backgroundImage = new Image();
-    backgroundImage.src = 'assets/background2.png'; // Put the URL or relative path of your image here
+    backgroundImage.src = 'assets/background3.png'; // Put the URL or relative path of your image here
 
     // Ensure the image is loaded before starting the animation
     backgroundImage.onload = function() {
