@@ -32,11 +32,6 @@ function getCompletelySolvedBoard(partialBoard) {
     return sudoku.board;
 }
 
-
-
-
-
-
 function checkCorrectness(row, col) {
     if (emojiMapping[selectedOption] === unicodeSolved[row][col]) {
         return true;
